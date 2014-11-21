@@ -1,0 +1,76 @@
+<?php
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+<meta http-equiv="X-UA-Compatible" content="text/html; charset=UTF-8" />
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/API_tester.js"></script>
+<link rel="stylesheet" href="assets/css/s.css" />
+<title>API有效性测试</title>
+</head>
+<body style="min-width:800px">
+	<div style="font-weight:bold;font-size:35px;text-align:center;margin:20px;">API有效性测试-试用版</div>
+	<form id="apiform" method="post" style="margin-top:50px">
+		<div style="float:left;width:48%;min-width:400px">
+			<div style="width:80%;text-align:center;">
+				<a href="#" onclick="changeAnother();" style="text-decoration: none;font-weight:bold">切换输入方式</a>
+			</div>
+			<div id="method1">
+				<div style="width:100%;font-size:20px;font-weight:bold">API URL Header:</div>
+				<input type="text" id="urlHeader" style="width:90%;margin-top:10px"/>
+				<div style="width:100%;font-size:20px;font-weight:bold;margin-top:20px">Parametes:</div>
+				<div style="width:100%;font-size:20px;font-weight:bold;margin-top:10px">&nbsp;&nbsp;&nbsp[参数名]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp[参数值]</div>
+				<div id="paramtersContainer">
+					<div id="inputLine" class="newLine" style="margin-top:10px">
+						<input type="text" id="paramterName" class="parameterName"/>&nbsp&nbsp&nbsp;&nbsp;&nbsp;&nbsp
+						<input type="text" id="paramterValue" class="parameterValue" onkeydown='if(event.keyCode==13) addNewParameter();'/>
+					</div>
+				</div>
+			</div>
+			<div style="display:none" id="method2">
+				<div style="width:100%;font-size:20px;font-weight:bold">API Full URL:</div>
+				<textarea type="text" id="fullURL" style="width:90%;margin-top:10px;height:200px;font-size:24px"></textarea>
+			</div>
+			<div style="width:80%;text-align:center;margin-top:40px">
+				<input type="button" onclick="submitForm();" style="height:50px;width:100px;" value="测试API"/>
+			</div>
+		</div>
+		<div style="float:left;width:48%">
+			<div style="width:100%;font-size:20px;font-weight:bold">Request URL:</div>
+			<div id="urlContent" style="witdth:100%;height:50px;color:green"></div>
+			<div style="width:100%;font-size:20px;font-weight:bold">Response Data:</div>
+			<div class="HeadersRow">
+			  <textarea id="RawJson" id="width:100%;height:200px"></textarea>
+			</div>
+			<div id="ControlsRow">
+			  <input type="Button" value="格式化JSON" onclick="Process();"/>
+			  <span id="TabSizeHolder">
+			    缩进量
+			    <select id="TabSize" onchange="TabSizeChanged()">
+			      <option value="1">1</option>
+			      <option value="2" selected="true">2</option>
+			      <option value="3">3</option>
+			      <option value="4">4</option>
+			      <option value="5">5</option>
+			      <option value="6">6</option>
+			    </select>
+			  </span>
+			  <label for="QuoteKeys">
+			    <input type="checkbox" id="QuoteKeys" onclick="QuoteKeysClicked()" checked="true" /> 
+			    引号
+			  </label>&nbsp; 
+			  <a href="javascript:void(0);" onclick="SelectAllClicked()">全选</a>
+			  &nbsp;
+			  <span id="CollapsibleViewHolder" >
+			      <label for="CollapsibleView">
+			        <input type="checkbox" id="CollapsibleView" onclick="CollapsibleViewClicked()" checked="true" /> 
+			        显示控制
+			      </label>
+			  </span>
+			</div>
+			<div id="Canvas" class="Canvas"></div>
+		</div>
+	</form>
+</body>
+</html>
